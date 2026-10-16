@@ -1,0 +1,10 @@
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Configurações de ambiente / Senhas
+.env
+.env.local
+
+# Pastas de dependências (caso usemos futuramente)
+node_modules/
