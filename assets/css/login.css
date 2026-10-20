@@ -1,0 +1,140 @@
+/* Estilização Unificada do Card e Formulário */
+
+/* LAYOUT PRINCIPAL */
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* HEADER DA MARCA */
+.brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.brand-logo {
+  width: 110px;
+  height: 110px;
+  object-fit: contain;
+}
+
+.brand-title {
+  font-family: var(--font-family-main);
+  font-size: 52px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-dark);
+}
+
+/* CARD DO FORMULÁRIO (Borda em Degradê) */
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: linear-gradient(#F8E2C1, #F8E2C1) padding-box,
+              linear-gradient(145deg, transparent 35%, #E66C00, #55300B) border-box;
+  border: 2px solid transparent;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.login-subtitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: #55300B;
+  margin-bottom: 4px;
+}
+
+/* FORMULÁRIO E INPUTS */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-dark);
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-body);
+  background-color: #EED7B5;
+  border: 1px solid #C49F70;
+  border-radius: 12px;
+  outline: none;
+  color: var(--color-text-dark);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input::placeholder {
+  opacity: 0.6;
+}
+
+.form-input:focus {
+  border-color: #A84900;
+  box-shadow: 0 0 0 2px rgba(168, 73, 0, 0.2);
+}
+
+/* MENSAGEM DE ERRO */
+.error-message {
+  font-size: 13px;
+  color: #D32F2F;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  min-height: 18px;
+}
+
+/* BOTÃO SUBMIT */
+.btn-primary {
+  width: 130px;
+  margin: 8px auto 0;
+  padding: 10px 20px;
+  font-family: var(--font-family-main);
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-light);
+  background-color: #F57C00;
+  border: 1px solid #B35100;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #E66C00;
+}
+
+.btn-primary:active,
+.login-card button:active {
+  transform: scale(0.95);
+}
+
+.btn-primary:disabled {
+  background-color: #CCC;
+  border-color: #AAA;
+  cursor: not-allowed;
+}

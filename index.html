@@ -4,48 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GameTime — Login</title>
+
+  <!-- Estilos Globais e da Tela de Login -->
   <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/login.css">
+
 </head>
-<body>
-  <div class="login-container">
-    <h1>🛡️ GameTime</h1>
-    <p>Entre com sua conta para continuar</p>
+<body class="bg-user">
 
-    <form id="login-form">
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" required placeholder="seu@email.com">
-      </div>
+    <main class="login-wrapper">
+        <header class="brand-header">
+        <img src="assets/images/logo_gametime.png" alt="Logo GameTime" class="brand-logo">
+        <h1 class="brand-title">GameTime</h1>
+        </header>
 
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input type="password" id="password" required placeholder="******">
-      </div>
+        <!-- Card de Autenticação -->
+        <section class="login-card">
+            <p class="login-subtitle">Entre com sua conta para continuar</p>
 
-      <button type="submit">Entrar no Jogo</button>
-    </form>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        class="form-input" 
+                        required 
+                        placeholder="Digite seu e-mail"
+                        autocomplete="email"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Senha</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="form-input" 
+                        required 
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                    >
+                </div>
 
-    <div id="error-message" class="error-msg"></div>
-  </div>
+                <div id="error-message" class="error-message"></div>
+
+                <button type="submit" id="btn-submit" class="btn-primary">Entrar</button>
+            </form>
+        </section>
+    </main>
+
 
   <!-- 1. SDK JS do Supabase via CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- 2. Nossos arquivos de script -->
   <script src="assets/js/supabase.js"></script>
   <script src="assets/js/auth.js"></script>
+
   <script>
-    // Executa a verificação ao carregar a tela
     document.addEventListener('DOMContentLoaded', () => {
+      // Verifica se já está logado para redirecionar automaticamente
       checkAuthAndRedirect();
 
       const loginForm = document.getElementById('login-form');
+      const errorDiv = document.getElementById('error-message');
+      const btnSubmit = document.getElementById('btn-submit');
+
       loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('email').value;
+        
+        const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
-        const errorDiv = document.getElementById('error-message');
 
         errorDiv.textContent = "";
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = "Entrando...";
 
         const { data, error } = await supabaseClient.auth.signInWithPassword({
           email,
@@ -53,8 +85,11 @@
         });
 
         if (error) {
-          errorDiv.textContent = "Falha no login: " + error.message;
+          errorDiv.textContent = "Email ou senha incorretos.";
+          btnSubmit.disabled = false;
+          btnSubmit.textContent = "Submit";
         } else {
+          // Se deu certo, o checkAuthAndRedirect faz o roteamento pelo role (ADMIN ou TEEN)
           checkAuthAndRedirect();
         }
       });
