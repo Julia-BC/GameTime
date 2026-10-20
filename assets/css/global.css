@@ -1,14 +1,14 @@
-/* ==========================================================================
-   GLOBAL.CSS — GameTime (Variáveis, Reset e Estilos Base)
-   ========================================================================== */
+/*(Variáveis, Reset e Estilos Base)*/
 
-/* 1. VARIÁVEIS DO SISTEMA (Design Tokens) */
+/* 1. IMPORTAÇÃO DA FONTE JURA VIA GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Jura:wght@400;500;600;700&display=swap');
+
+/* VARIÁVEIS DO SISTEMA (Design Tokens) */
 :root {
-  /* --- Cores de Fundo em Degradê (Extraídas do Figma) --- */
-  /* BG_Admin: Laranja escuro no topo -> Amarelo claro na base */
+   /* BG_Admin:*/
   --bg-admin-gradient: linear-gradient(180deg, #4F200D 0%, #FF8400 25%, #FFD93D 62%, #F6F1E9 100%);
 
-  /* BG_User: Amarelo claro no topo -> Laranja acastanhado na base */
+  /* BG_User:*/
   --bg-user-gradient: linear-gradient(180deg, #F6F1E9 0%, #FFD93D 38%, #FF8400 75%, #4F200D 100%);
 
   /* --- Cores Complementares & Interface --- */
@@ -20,21 +20,36 @@
   --color-card-bg: rgba(255, 255, 255, 0.85);
 
   /* --- Fontes e Espaçamentos --- */
-  --font-family-main: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-family-main: 'Jura', 'sans-serif';
+
+  /* --- Escala de Tamanhos de Fonte --- */
+  --font-size-h1: 64px;
+  --font-size-h2: 32px;
+  --font-size-h3: 24px;
+  --font-size-body: 16px;
+  --font-size-sm: 14px;
+
+  /* --- Pesos de Fonte --- */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+ /* --- Bordas e Sombreamento --- */
   --border-radius-sm: 8px;
   --border-radius-md: 16px;
   --border-radius-lg: 24px;
   --box-shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* 2. RESET UNIVERSAL */
+/* RESET UNIVERSAL */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* 3. ESTILOS BASE DO CORPO DA PÁGINA */
+/* ESTILOS BASE DO CORPO DA PÁGINA */
 html, body {
   width: 100%;
   min-height: 100vh;
@@ -43,7 +58,50 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* 4. CLASSES UTILITÁRIAS PARA APLICAÇÃO DOS DEGRADÊS */
+
+/* STILOS DE TIPOGRAFIA */
+
+/* H1: Timer principal */
+.text-h1, h1 {
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: 0em;
+}
+
+/* H2: Títulos de seções (ex: Tarefas de Hoje, Monitoramento) */
+.text-h2, h2 {
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+/* H3: Títulos de Cards e Modais */
+.text-h3, h3 {
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+}
+
+/* Body: Texto padrão de tarefas, formulários e botões */
+.text-body, p, span, button, input {
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+}
+
+/* Small: Legendas, métricas do rodapé (◯ 5 ✓ 2) e justificativas */
+.text-sm, small {
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+}
+
+/* CLASSES UTILITÁRIAS PARA APLICAÇÃO DOS DEGRADÊS */
 
 /* Fundo para a Dashboard do Administrador */
 .bg-admin {
