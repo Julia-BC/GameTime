@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameTime — Login</title>
+  <link rel="stylesheet" href="assets/css/global.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>🛡️ GameTime</h1>
+    <p>Entre com sua conta para continuar</p>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required placeholder="seu@email.com">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" required placeholder="******">
+      </div>
+
+      <button type="submit">Entrar no Jogo</button>
+    </form>
+
+    <div id="error-message" class="error-msg"></div>
+  </div>
+
+  <!-- 1. SDK JS do Supabase via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- 2. Nossos arquivos de script -->
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script>
+    // Executa a verificação ao carregar a tela
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuthAndRedirect();
+
+      const loginForm = document.getElementById('login-form');
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('error-message');
+
+        errorDiv.textContent = "";
+
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) {
+          errorDiv.textContent = "Falha no login: " + error.message;
+        } else {
+          checkAuthAndRedirect();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

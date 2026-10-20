@@ -1,0 +1,58 @@
+/* ==========================================================================
+   GLOBAL.CSS — GameTime (Variáveis, Reset e Estilos Base)
+   ========================================================================== */
+
+/* 1. VARIÁVEIS DO SISTEMA (Design Tokens) */
+:root {
+  /* --- Cores de Fundo em Degradê (Extraídas do Figma) --- */
+  /* BG_Admin: Laranja escuro no topo -> Amarelo claro na base */
+  --bg-admin-gradient: linear-gradient(180deg, #4F200D 0%, #FF8400 25%, #FFD93D 62%, #F6F1E9 100%);
+
+  /* BG_User: Amarelo claro no topo -> Laranja acastanhado na base */
+  --bg-user-gradient: linear-gradient(180deg, #F6F1E9 0%, #FFD93D 38%, #FF8400 75%, #4F200D 100%);
+
+  /* --- Cores Complementares & Interface --- */
+  --color-primary: #FF8400;
+  --color-primary-dark: #CC7A00;
+  --color-secondary: #FFD93D;
+  --color-text-dark: #4F200D;
+  --color-text-light: #F6F1E9;
+  --color-card-bg: rgba(255, 255, 255, 0.85);
+
+  /* --- Fontes e Espaçamentos --- */
+  --font-family-main: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --border-radius-sm: 8px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+  --box-shadow-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. RESET UNIVERSAL */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. ESTILOS BASE DO CORPO DA PÁGINA */
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--font-family-main);
+  color: var(--color-text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 4. CLASSES UTILITÁRIAS PARA APLICAÇÃO DOS DEGRADÊS */
+
+/* Fundo para a Dashboard do Administrador */
+.bg-admin {
+  background: var(--bg-admin-gradient);
+  background-attachment: fixed; /* Mantém o degradê fixo na rolagem */
+}
+
+/* Fundo para a Dashboard do Adolescente (User) */
+.bg-user {
+  background: var(--bg-user-gradient);
+  background-attachment: fixed;
+}
