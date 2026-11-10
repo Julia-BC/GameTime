@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameTime — Painel do Administrador</title>
+  
+  <!-- Estilos Globais e da Admin -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body class="bg-admin">
+
+  <div class="admin-wrapper">
+    
+    <!-- HEADER DO ADMINISTRADOR -->
+    <header class="admin-header">
+      <div class="admin-brand">
+        <img src="assets/images/logo_gametime.png" alt="GameTime Logo" class="admin-logo">
+        <div>
+          <h1>Painel do Responsável</h1>
+          <span class="admin-subtitle">Gestão & Controle de Missões</span>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <!-- Botão de Notificações com Badge de Pendentes -->
+        <button id="btn-notifications" class="icon-btn" title="Notificações & Aprovações" onclick="toggleNotificationsModal()">
+          <img src="assets/images/icons/bell.svg" alt="Notificações" class="icon-img">
+          <span id="notification-badge" class="notif-badge">0</span>
+        </button>
+        <button id="btn-logout" class="icon-btn" title="Sair" onclick="handleLogout()">
+          <img src="assets/images/icons/sign-out.svg" alt="Sair" class="icon-img">
+        </button>
+      </div>
+    </header>
+
+    <!-- GRID PRINCIPAL DE PAINÉIS -->
+    <div class="admin-grid-layout">
+      
+      <!-- COLUNA ESQUERDA: MONITORAMENTO -->
+      <section class="admin-section monitoring-section">
+        <div class="section-header">
+          <h2>MONITORAMENTO</h2>
+        </div>
+        <div class="monitor-card">
+          <h3 class="monitor-title">Tarefas de Hoje</h3>
+          <div class="monitor-tasks-list" id="monitor-tasks-container">
+            <p class="loading-text">Carregando tarefas...</p>
+          </div>
+          <div class="monitor-counters">
+            <span id="m-pending">◯ 0</span>
+            <span id="m-completed">✓ 0</span>
+            <span id="m-rejected">✕ 0</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUNA DIREITA: CONTROLE DE TAREFAS (Lista + Botão) -->
+      <section class="admin-section control-section">
+        <div class="section-header">
+          <h2>CONTROLE DE TAREFAS</h2>
+          <button class="btn-secondary-admin" onclick="toggleTaskModal(true)">+ Nova Tarefa</button>
+        </div>
+        
+        <div class="admin-card-list" id="admin-tasks-container">
+          <p class="loading-text">Carregando tarefas...</p>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL DE NOTIFICAÇÕES & APROVAÇÕES PENDENTES -->
+  <div id="notifications-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🔔 Aprovações Pendentes</h2>
+        <button class="close-modal-btn" onclick="toggleNotificationsModal()">✕</button>
+      </div>
+      <div class="modal-body" id="modal-pending-container">
+        <p class="loading-text">Carregando aprovações...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CRIAÇÃO DE TAREFA -->
+  <div id="task-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>✨ Criar Nova Tarefa</h2>
+        <button class="close-modal-btn" onclick="toggleTaskModal(false)">✕</button>
+      </div>
+      
+      <form id="task-control-form" class="task-form" onsubmit="handleCreateTask(event)">
+        <div class="form-group">
+          <input type="text" id="task-name" placeholder="Nome" required class="form-input">
+        </div>
+        
+        <div class="form-group">
+          <textarea id="task-desc" placeholder="Descrição" rows="2" class="form-input"></textarea>
+        </div>
+
+        <div class="form-row">
+          <label class="form-label">Dificuldade</label>
+          <div class="difficulty-selector">
+            <button type="button" class="diff-btn active" data-diff="Fácil" onclick="setDifficulty('Fácil', this)">Fácil</button>
+            <button type="button" class="diff-btn" data-diff="Médio" onclick="setDifficulty('Médio', this)">Médio</button>
+            <button type="button" class="diff-btn" data-diff="Difícil" onclick="setDifficulty('Difícil', this)">Difícil</button>
+          </div>
+        </div>
+
+        <div class="form-row inline-row">
+          <label class="form-label">Pontuação</label>
+          <div class="number-input-wrap">
+            <input type="number" id="task-xp" value="30" min="5" max="500" class="form-input-number">
+            <span class="unit-text">XP</span>
+          </div>
+        </div>
+
+        <div class="form-row inline-row">
+          <select id="task-frequency-type" class="form-select">
+            <option value="Semanal">Semanal</option>
+            <option value="Diário">Diário</option>
+          </select>
+          <div class="number-input-wrap">
+            <input type="number" id="task-freq-times" value="1" min="1" max="7" class="form-input-number">
+            <span class="unit-text">vezes</span>
+          </div>
+        </div>
+
+        <!-- Seletor de Dias da Semana -->
+        <div class="days-picker">
+          <button type="button" class="day-btn" onclick="toggleDay(this)">S</button>
+          <button type="button" class="day-btn active" onclick="toggleDay(this)">T</button>
+          <button type="button" class="day-btn" onclick="toggleDay(this)">Q</button>
+          <button type="button" class="day-btn" onclick="toggleDay(this)">Q</button>
+          <button type="button" class="day-btn" onclick="toggleDay(this)">S</button>
+          <button type="button" class="day-btn" onclick="toggleDay(this)">S</button>
+          <button type="button" class="day-btn" onclick="toggleDay(this)">D</button>
+        </div>
+
+        <div class="form-row toggle-row">
+          <label class="form-label">Obrigatório</label>
+          <label class="switch">
+            <input type="checkbox" id="task-mandatory" checked>
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+        <div class="form-row time-limit-row">
+          <label class="form-label">Limite de tempo</label>
+          <div class="time-inputs">
+            <span>Início</span> <input type="time" id="task-start" value="07:30" class="form-input-time">
+            <span>Fim</span> <input type="time" id="task-end" value="14:30" class="form-input-time">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <select id="task-tag" class="form-select">
+            <option value="Exercício">Exercício</option>
+            <option value="Estudos">Estudos</option>
+            <option value="Casa">Tarefas de Casa</option>
+            <option value="Outros">Outros</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary-admin">Salvar / Criar Tarefa</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Supabase CDN e Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuthAndRedirect();
+    });
+  </script>
+</body>
+</html>

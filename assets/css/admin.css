@@ -1,0 +1,446 @@
+/* ==========================================================================
+   ADMIN.CSS — Painel do Administrador (GameTime)
+   ========================================================================== */
+
+.admin-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(26, 46, 5, 0.6);
+  padding: 16px 20px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(51, 255, 119, 0.2);
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.admin-brand h1 {
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  color: #FFF;
+}
+
+.admin-subtitle {
+  font-size: 12px;
+  color: #B5F8C8;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(51, 255, 119, 0.3);
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #E65100;
+  color: #FFF;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+}
+
+.icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(24%) sepia(34%) saturate(1067%) hue-range(350deg) brightness(90%) contrast(90%);
+}
+
+/* Layout de Colunas */
+.admin-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .admin-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-section {
+  background: #FDF5E6;
+  border-radius: var(--border-radius-md);
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border: 1px solid #EED8B5;
+}
+
+.section-header {
+  margin-bottom: 16px;
+  border-bottom: 2px solid #EED8B5;
+  padding-bottom: 8px;
+}
+
+.section-header h2 {
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #4A2E00;
+  text-align: center;
+}
+
+/* Monitoramento */
+.monitor-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.monitor-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #331A00;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.monitor-task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.03);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.monitor-task-item.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.monitor-counters {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #4A2E00;
+}
+
+/* Controle de Tarefas (Formulário) */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-input, .form-select {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-bottom: 1px solid #B58450;
+  background: transparent;
+  font-family: var(--font-family-main);
+  font-size: 13px;
+  color: #331A00;
+  outline: none;
+}
+
+.form-input::placeholder {
+  color: #8C6239;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inline-row {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-label {
+  font-size: 13px;
+  color: #55300B;
+  font-weight: 500;
+}
+
+.difficulty-selector {
+  display: flex;
+  gap: 4px;
+}
+
+.diff-btn {
+  background: #EED8B5;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: var(--font-family-main);
+  color: #55300B;
+}
+
+.diff-btn.active {
+  background: #E65100;
+  color: #FFF;
+  font-weight: bold;
+}
+
+.number-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-input-number {
+  width: 50px;
+  text-align: center;
+  padding: 4px;
+  border: 1px solid #B58450;
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--font-family-main);
+}
+
+.unit-text {
+  font-size: 12px;
+  color: #55300B;
+}
+
+.days-picker {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.day-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #E65100;
+  background: transparent;
+  color: #E65100;
+  font-weight: bold;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.day-btn.active {
+  background: #E65100;
+  color: #FFF;
+}
+
+.toggle-row {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Switch Toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 22px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 22px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #E65100;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.time-limit-row {
+  font-size: 12px;
+}
+
+.time-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-input-time {
+  padding: 2px 6px;
+  border: 1px solid #B58450;
+  border-radius: 4px;
+  background: transparent;
+  font-family: var(--font-family-main);
+}
+
+.btn-primary-admin {
+  background: #E65100;
+  color: #FFF;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: var(--font-family-main);
+  margin-top: 8px;
+}
+
+.btn-secondary-admin {
+  background: #EED8B5;
+  color: #4A2E00;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: var(--font-family-main);
+}
+
+.btn-secondary-admin:hover {
+  background: #DFBFA0;
+}
+
+.admin-task-manage-item {
+  background: #FFF;
+  border: 1px solid #EED8B5;
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #331A00;
+}
+
+/* Modal de Notificações */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #FDF5E6;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid #E65100;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #EED8B5;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.modal-header h2 {
+  font-size: 16px;
+  color: #331A00;
+}
+
+.close-modal-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #331A00;
+}
+
+.approval-card-modal {
+  background: #FFF;
+  border: 1px solid #EED8B5;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.approval-actions-modal {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.btn-action-mod {
+  padding: 4px 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #FFF;
+}
+
+.btn-mod-accept { background: #2E7D32; }
+.btn-mod-adjust { background: #EF6C00; }
+.btn-mod-deny { background: #C62828; }
