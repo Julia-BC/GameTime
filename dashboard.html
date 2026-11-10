@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameTime — Dashboard do Jogador</title>
+  
+  <!-- Estilos Globais e da Dashboard -->
+  <link rel="stylesheet" href="assets/css/global.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body class="bg-user">
+
+  <div class="dashboard-wrapper">
+    
+    <!-- HEADER DO JOGADOR -->
+    <header class="player-header">
+      <div class="player-info">
+        <img src="assets/images/logo_gametime.png" alt="Avatar" class="player-avatar">
+        <div class="player-meta">
+      <span id="player-level-text" class="player-level">N3 — Guardião do Tempo</span>
+      
+            <!-- Barra de XP Dinâmica -->
+            <div class="xp-bar-container" title="Progresso de XP">
+                <div id="xp-bar-fill" class="xp-bar-fill" style="width: 0%;"></div>
+            </div>
+            <span id="xp-text" class="xp-text">0 / 600 XP</span>
+            </div>
+        </div>
+        
+        <div class="header-actions">
+            <button id="btn-notifications" class="icon-btn" title="Notificações">
+            <img src="assets/images/icons/bell.svg" alt="Notificações" class="icon-img">
+            </button>
+            <button id="btn-logout" class="icon-btn" title="Sair" onclick="handleLogout()">
+            <img src="assets/images/icons/sign-out.svg" alt="Sair" class="icon-img">
+            </button>
+        </div>
+    </header>
+
+    <!-- PAINEL CENTRAL DE SALDO / TIMER -->
+   <section class="timer-section">
+  <!-- Timer dinâmico (Carrega do banco) -->
+  <div id="timer-display" class="timer-display">00:00</div>
+  
+  <div class="timer-actions">
+    <button class="btn-action" onclick="withdrawTime('daily')">
+      <span>⏱️</span> Sacar Hoje
+    </button>
+    <button class="btn-action" onclick="withdrawTime('weekend')">
+      <span>🌴</span> Sacar Fim de Semana
+    </button>
+  </div>
+</section>
+
+    <!-- FEED DE TAREFAS DE HOJE -->
+    <section class="tasks-section">
+      <div class="section-header">
+        <h2>Tarefas de Hoje</h2>
+        <button class="btn-secondary" id="btn-suggest">+ Sugerir Tarefa</button>
+      </div>
+
+      <div class="tasks-list" id="tasks-container">
+        <p class="loading-tasks">Carregando tarefas...</p>
+      </div>
+      
+
+      <!-- Métricas / Contadores do Rodapé das Tarefas -->
+      <div class="tasks-counter">
+        <span>◯ 0 Pendentes</span>
+        <span>✓ 0 Concluídas</span>
+        <span>✕ 0 Rejeitadas</span>
+      </div>
+    </section>
+
+    <!-- MÓDULO DE CONQUISTAS E STREAK -->
+    <section class="achievements-section">
+      <div class="achievements-header">
+        <h3>🏆 Minhas Conquistas</h3>
+        <div class="streak-badge">
+          <span>⚡</span> 0 dias de sequência
+        </div>
+      </div>
+      <div class="badges-grid" id="badges-container">
+        <p class="loading-badges">Carregando conquistas...</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Supabase CDN e Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/js/supabase.js"></script>
+  <script src="assets/js/auth.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+  <script src="assets/js/wallet.js"></script>
+  <script src="assets/js/tasks.js"></script>
+  <script src="assets/js/achievements.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAuthAndRedirect();
+    });
+  </script>
+</body>
+</html>

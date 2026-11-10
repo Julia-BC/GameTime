@@ -1,0 +1,303 @@
+/* ==========================================================================
+   DASHBOARD.CSS — Estilização da Área do Adolescente (GameTime)
+   ========================================================================== */
+
+.dashboard-wrapper {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 1. PLAYER HEADER */
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(46, 26, 5, 0.4);
+  padding: 12px 16px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(255, 183, 51, 0.2);
+}
+
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-avatar {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  background: #F8E2C1;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.player-level {
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+  color: #FFF;
+}
+
+.player-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.xp-bar-container {
+  width: 120px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.xp-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #FF9900, #FFD299);
+}
+
+.xp-text {
+  font-size: 11px;
+  color: #FFD299;
+  font-weight: var(--font-weight-medium);
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 183, 51, 0.3);
+  border-radius: 8px;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background 0.2s;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.icon-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(24%) sepia(34%) saturate(1067%) hue-range(350deg) brightness(90%) contrast(90%);
+}
+
+/* 2. TIMER SECTION (Relógio Central) */
+.timer-section {
+  background: linear-gradient(#2E1A05, #2E1A05) padding-box,
+              linear-gradient(145deg, #FFB733, #A84900) border-box;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-lg);
+  padding: 28px 20px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.timer-display {
+  font-family: var(--font-family-main);
+  font-size: 64px;
+  font-weight: var(--font-weight-bold);
+  color: #FFD299;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.timer-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.btn-action {
+  background: #A84900;
+  border: 1px solid #FF9900;
+  color: #FFF;
+  font-family: var(--font-family-main);
+  font-size: 13px;
+  font-weight: var(--font-weight-bold);
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-action:hover {
+  background: #C75700;
+}
+
+.btn-action:active {
+  transform: scale(0.96);
+}
+
+/* 3. TASKS SECTION */
+.tasks-section {
+  background: rgba(248, 226, 193, 0.95);
+  border-radius: var(--border-radius-md);
+  padding: 20px;
+  color: var(--color-text-dark);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+}
+
+.btn-secondary {
+  background: #E66C00;
+  color: #FFF;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--font-family-main);
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.task-card {
+  background: #EED7B5;
+  border: 1px solid #C49F70;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-card.completed {
+  opacity: 0.7;
+  background: #E2CFAF;
+  text-decoration: line-through;
+}
+
+.task-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-title {
+  font-size: 15px;
+  font-weight: var(--font-weight-bold);
+}
+
+.task-reward {
+  font-size: 12px;
+  color: #8C531C;
+  font-weight: var(--font-weight-medium);
+}
+
+.btn-complete {
+  background: #2E7D32;
+  color: #FFF;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-family: var(--font-family-main);
+  font-weight: var(--font-weight-bold);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.task-status-text {
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  color: #2E7D32;
+}
+
+.tasks-counter {
+  display: flex;
+  justify-content: space-around;
+  font-size: 13px;
+  font-weight: var(--font-weight-bold);
+  color: #55300B;
+  border-top: 1px dashed #C49F70;
+  padding-top: 12px;
+}
+
+/* 4. ACHIEVEMENTS SECTION */
+.achievements-section {
+  background: linear-gradient(145deg, #7A2800, #4A1800);
+  border-radius: var(--border-radius-md);
+  padding: 18px;
+  color: #FFF;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.achievements-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.achievements-header h3 {
+  font-size: 16px;
+  font-weight: var(--font-weight-bold);
+}
+
+.streak-badge {
+  font-size: 12px;
+  background: rgba(255, 153, 0, 0.2);
+  border: 1px solid #FF9900;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: var(--font-weight-bold);
+}
+
+.badges-grid {
+  display: flex;
+  gap: 10px;
+}
+
+.badge-item {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px dashed rgba(255, 255, 255, 0.3);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: var(--font-weight-bold);
+  opacity: 0.6;
+}
+
+.badge-item.unlocked {
+  background: rgba(255, 153, 0, 0.2);
+  border: 1px solid #FF9900;
+  opacity: 1;
+}
